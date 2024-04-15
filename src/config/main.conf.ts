@@ -6,5 +6,9 @@ import { ClientOptions, GatewayIntentBits } from "discord.js";
  */
 export const clientOptions: ClientOptions = {
   allowedMentions: { parse: ["users"] },
-  intents: [GatewayIntentBits.Guilds],
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.MessageContent,
+    GatewayIntentBits.GuildMessages,
+  ],
 };
