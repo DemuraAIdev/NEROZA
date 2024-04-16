@@ -9,7 +9,7 @@ class ReadL {
   private client: Client;
   constructor(client: Client) {
     this.client = client;
-    NConsole.info("[ReadL]", "Readline initialized.");
+    NConsole.info("[ReadLU]", "Readline initialized.");
 
     rl.on("line", (input) => {
       try {
@@ -19,7 +19,7 @@ class ReadL {
       }
     });
     rl.on("close", () => {
-      NConsole.info("[ReadL]", "Readline closed.");
+      NConsole.info("[ReadLU]", "Readline closed.");
       client.destroy();
       process.exit(0);
     });

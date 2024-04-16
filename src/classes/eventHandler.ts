@@ -1,7 +1,8 @@
 import type NERO from "./NERO";
 import path from "path";
 import fs from "fs";
-import NConsole from "../lib/Console";
+import NConsole from "@/utils/Console";
+import { IEventClass } from "@/types/event";
 
 /**
  * Handles loading and executing events for the client.
@@ -31,12 +32,17 @@ class eventHandler {
     ).filter((file) => file.endsWith(".js"));
     for (const file of eventFiles) {
       try {
-        const EventClass = (await import(path.join(this.path, file))).default;
+        const EventClass = (await import(path.join(this.path, file)))
+          .default as IEventClass;
         const eventInstance = new EventClass();
 
         // check if the event is a valid not undefined
         NConsole.info("[EventH]", `Loaded event: ${eventInstance.name}`);
         if (eventInstance) {
+          if (!eventInstance.enabled) {
+            NConsole.warn("[EventH]", `Event disabled: ${eventInstance.name}`);
+            continue;
+          }
           if (eventInstance.once) {
             this.client.once(eventInstance.name, (...args) =>
               eventInstance.execute(...args)
@@ -70,8 +76,12 @@ class eventHandler {
   public async reloadEvents(): Promise<void> {
     this.unloadEvents();
     await this.loadEvents();
-    return;
   }
+
+  /**
+   * Compiles the events in the specified path.
+   * @param options The compiler options.
+   */
 }
 
 export default eventHandler;

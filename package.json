@@ -7,19 +7,24 @@
     "start": "node dist/index.js",
     "lint": "eslint .",
     "build": "pnpm run lint && pnpm run compile",
-    "compile": "tsc --build tsconfig.json"
+    "compile": "tsc --build tsconfig.json && tsc-alias -p tsconfig.json"
   },
   "devDependencies": {
     "@eslint/js": "^9.0.0",
     "eslint": "^9.0.0",
     "globals": "^15.0.0",
+    "tsc-alias": "^1.8.8",
     "typescript": "^5.4.5",
-    "typescript-eslint": "^7.6.0"
+    "typescript-eslint": "^7.7.0"
   },
   "dependencies": {
     "@types/node": "^20.12.7",
     "discord.js": "^14.14.1",
     "dotenv": "^16.4.5",
     "tslib": "^2.6.2"
+  },
+  "engines": {
+    "node": ">=16.6.0",
+    "npm": ">=8.0.0"
   }
 }

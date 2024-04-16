@@ -1,8 +1,8 @@
 import { Client, ClientOptions } from "discord.js";
-import NConsole from "../lib/Console";
-import eventHandler from "./eventHandler";
+import NConsole from "@/utils/Console";
+import eventHandler from "./EventHandler";
 import path from "path";
-import ReadL from "../lib/ReadL";
+import ReadL from "@/utils/ReadL";
 
 /**
  * Represents the NERO class, which extends the Client class.
@@ -13,7 +13,7 @@ import ReadL from "../lib/ReadL";
 class NERO extends Client {
   constructor(options: ClientOptions) {
     super(options);
-    NConsole.info("[NERO]", "Client initialized.");
+    NConsole.info("[NEROZA]", "Client initialized.");
   }
 
   public readonly eventHandler = new eventHandler(
@@ -30,7 +30,9 @@ class NERO extends Client {
    */
 
   public async init(token: string): Promise<NERO> {
-    await this.login(token);
+    await this.login(token).then(() => {
+      NConsole.info("[NEROZA]", "Client logged in.");
+    });
     await this.eventHandler.loadEvents();
     return this;
   }

@@ -2,7 +2,7 @@ import "dotenv/config";
 import { clientOptions } from "./config/main.conf";
 import TOKEN from "./config/token.conf";
 import NERO from "./classes/NERO";
-import NConsole from "./lib/Console";
+import NConsole from "./utils/Console";
 
 const client = new NERO(clientOptions);
 

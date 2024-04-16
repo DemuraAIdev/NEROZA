@@ -1,4 +1,4 @@
-const NRConsole = {
+const NConsole = {
   info: (...args: unknown[]) => {
     console.info("\x1b[34m", "Info", "\x1b[0m", ...args, "\x1b[0m");
   },
@@ -10,4 +10,4 @@ const NRConsole = {
   },
 };
 
-export default NRConsole;
+export default NConsole;

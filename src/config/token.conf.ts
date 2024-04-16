@@ -1,5 +1,6 @@
 /**
- * The token used for the bot.
+ * The token used for authentication.
+ * @type {string}
  */
 const TOKEN_BOT: string = process.env.TOKEN || "";
 

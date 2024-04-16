@@ -1,13 +1,13 @@
-import { EventOptions } from "../../decorator";
+import { EventOptions } from "@/decorator";
 import { Events, Message } from "discord.js";
-import NConsole from "../../lib/Console";
+import NConsole from "@/utils/Console";
 
 @EventOptions({
   name: Events.MessageCreate,
 })
 class MessageCreate {
   async execute(message: Message) {
-    NConsole.info("[MessageE]", `Message received: ${message.content}`);
+    NConsole.info("[MesgeE]", `Message received: ${message.content}`);
   }
 }
 
